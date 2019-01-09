@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Error\Debugger;
+use Cake\I18n\Time;
 
 /**
  * User Controller
@@ -49,9 +50,9 @@ class UserController extends AppController
     {
         $user = $this->User->newEntity();
         if ($this->request->is('post')) {
-            //$user = $this->User->patchEntity($user, $this->request->getData());
-            $user->id = 4;
-            $user->name = 'ota atsushi';
+            $user = $this->User->patchEntity($user, $this->request->getData());
+            $user->create_date = Time::now();
+            
             if ($this->User->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
                 return $this->redirect(['action' => 'index']);
