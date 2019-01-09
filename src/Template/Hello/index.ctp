@@ -13,6 +13,8 @@
 </head>
 <body class="home">
 <h1>This is php Info!</h1>
+<?php use Cake\Core\Configure; ?>
+<p style="font-size: 29px;">cakePHPのバージョン：<?php echo Configure::version(); ?></p>
 <?php echo phpinfo();?>
 </body>
 </html>

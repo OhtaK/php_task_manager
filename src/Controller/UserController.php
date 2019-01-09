@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Error\Debugger;
 
 /**
  * User Controller
@@ -48,15 +49,20 @@ class UserController extends AppController
     {
         $user = $this->User->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->User->patchEntity($user, $this->request->getData());
+            //$user = $this->User->patchEntity($user, $this->request->getData());
+            $user->id = 4;
+            $user->name = 'ota atsushi';
             if ($this->User->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
+            }
+            else{
+                //エラーログをmy_app_name/logs/debug.logに出力
+                echo $this->log(print_r($user->errors(),true),LOG_DEBUG);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+        $this->redirect('/user');
     }
 
     /**
