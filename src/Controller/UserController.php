@@ -53,7 +53,7 @@ class UserController extends AppController
             $user = $this->User->patchEntity($user, $this->request->getData());
 
             if ($this->User->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('The user has been added.'));
                 return $this->redirect(['action' => 'index']);
             }
             else{
@@ -99,7 +99,9 @@ class UserController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
+        $id = $this->request->getData("id");
         $user = $this->User->get($id);
+        
         if ($this->User->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
