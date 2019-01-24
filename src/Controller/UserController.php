@@ -99,6 +99,7 @@ class UserController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
+
         $id = $this->request->getData("id");
         $user = $this->User->get($id);
         
@@ -110,4 +111,6 @@ class UserController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    
 }

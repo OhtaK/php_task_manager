@@ -35,7 +35,6 @@ class UserTable extends Table
 
         $this->setTable('user');
         $this->setDisplayField('name');
-        $this->primaryKey('id');
 
         $this->hasMany('Task', [
             'foreignKey' => 'user_id'
