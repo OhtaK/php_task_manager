@@ -272,5 +272,8 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     </div>
 </div>
 
+<p style="font-size: 29px;">cakePHPのバージョン：<?php echo Configure::version(); ?></p>
+<?php echo phpinfo();?>
+
 </body>
 </html>
