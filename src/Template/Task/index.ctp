@@ -1,29 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo</title>
- 
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
-</head>
+<div style="padding: 20px;">
 
-<body class="home">
-    <h1>This is Task Manager</h1>
-    <div class="task-panel">
-        <p class="panel-title">TODO</p>
-    </div>
+<h1>タスク登録</h1>
 
-    <div class="task-panel">
-        <p class="panel-title">DOING</p>
-    </div>
+<?php
+        //createでフォームを宣言
+        echo $this->Form->create('Task',array(
+            'type' => 'post', //type属性を指定
+            'url' => 'task/add' //POST先のURL
+        ));
 
-    <div class="task-panel">
-        <p class="panel-title">DONE</p>
-    </div>
-</body>
-</html>
+        //下記パラメータの数だけ列挙
+        echo $this->Form->input('name',array(
+            'div' => false,
+            'label' => 'タスク名',
+            "size" => 5,
+        ));
+        
+        echo $this -> Form -> input  ( "担当者",
+                                 [ "type" => "select",
+                                   "options" => [ [ "value" => "1",
+                                                    "text" => "ユーザー１" ,
+                                                    "selected" => true ],
+                                                  [ "value" => "2",
+                                                    "text" => "ユーザー2"], 
+                                                  [ "value" => "3",
+                                                    "text" => "ユーザー3" ] ], 
+                                   "empty" => "--" ] );
+
+        echo $this -> Form -> input (
+            "jp_datetime", [ "label" => "期日",
+                             "type" => "datetime",
+                             "dateformat" => "YMD",
+                             "monthNames" => false,
+                             "separator" => "/",
+                             "templates" => [ "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' ],
+                             "minYear" => date ( "Y" ) - 70,
+                             "maxYear" => date ( "Y" ) - 18,
+                             "default" => date ( "Y-m-d" ),
+                             "interval" => 5,
+                             "empty" => [ "year" => "年", "month" => "月", "day" => "日", "hour" => "時", "minute" => "分" ] ] );
+
+        echo $this -> Form -> input ( "area", [ "type" => "textarea",
+                                        "cols" => 10,
+                                        "rows" => 2,
+                                        "label" => "備考" ] );
+
+        //submitボタン作成。引数を入れるとその文言をボタンに出してくれる
+        echo $this->Form->submit("登録");
+        echo $this -> Form -> end ();
+    ?>
+</div>
