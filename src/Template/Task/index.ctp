@@ -16,34 +16,79 @@
             "size" => 5,
         ));
         
-        echo $this -> Form -> input  ( "担当者",
-                                 [ "type" => "select",
-                                   "options" => [ [ "value" => "1",
-                                                    "text" => "ユーザー１" ,
-                                                    "selected" => true ],
-                                                  [ "value" => "2",
-                                                    "text" => "ユーザー2"], 
-                                                  [ "value" => "3",
-                                                    "text" => "ユーザー3" ] ], 
-                                   "empty" => "--" ] );
+        echo $this->Form->input( "user_id",array(
+            'label' => '担当者',
+            "type" => "select",
+            "options" => [ 
+                [ "value" => "1",
+                "text" => "ユーザー１" ,
+                "selected" => true ],
+                [ "value" => "2",
+                "text" => "ユーザー2"], 
+                [ "value" => "3",
+                "text" => "ユーザー3" ]
+            ], 
+            "empty" => "--")
+        );
+        
+        echo $this->Form->input( "status",array(
+            'label' => 'ステータス',
+            "type" => "select",
+            "options" => [ 
+                [ "value" => "1",
+                "text" => "TODO" ,
+                "selected" => true ],
+                [ "value" => "2",
+                "text" => "DOING"], 
+                [ "value" => "3",
+                "text" => "DONE" ]
+            ], 
+            "empty" => "--")
+        );
 
-        echo $this -> Form -> input (
-            "jp_datetime", [ "label" => "期日",
-                             "type" => "datetime",
-                             "dateformat" => "YMD",
-                             "monthNames" => false,
-                             "separator" => "/",
-                             "templates" => [ "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' ],
-                             "minYear" => date ( "Y" ) - 70,
-                             "maxYear" => date ( "Y" ) - 18,
-                             "default" => date ( "Y-m-d" ),
-                             "interval" => 5,
-                             "empty" => [ "year" => "年", "month" => "月", "day" => "日", "hour" => "時", "minute" => "分" ] ] );
+        echo $this->Form->input( "priority_id",array(
+            'label' => '優先度',
+            "type" => "select",
+            "options" => [ 
+                [ "value" => "1",
+                "text" => "緊急" ,
+                "selected" => true ],
+                [ "value" => "2",
+                "text" => "ASAP"], 
+                [ "value" => "3",
+                "text" => "いつでも" ]
+            ], 
+            "empty" => "--")
+        );
 
-        echo $this -> Form -> input ( "area", [ "type" => "textarea",
-                                        "cols" => 10,
-                                        "rows" => 2,
-                                        "label" => "備考" ] );
+        echo $this -> Form -> input ("limit_date", array(
+            "label" => "期日",
+            "type" => "datetime",
+            "dateformat" => "YMD",
+            "monthNames" => false,
+            "separator" => "/",
+            "templates" => [ 
+                "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' 
+            ],
+            "minYear" => date ( "Y" ) - 70,
+            "maxYear" => date ( "Y" ) - 18,
+            "default" => date ( "Y-m-d" ),
+            "interval" => 5,
+            "empty" => [
+                "year" => "年",
+                "month" => "月",
+                "day" => "日",
+                "hour" => "時",
+                "minute" => "分"
+            ] ) 
+        );
+
+        echo $this->Form->input ("description",array(
+            "type" => "textarea",
+            "label" => "備考",
+            "cols" => 10,
+            "rows" => 2)
+        );
 
         //submitボタン作成。引数を入れるとその文言をボタンに出してくれる
         echo $this->Form->submit("登録");
