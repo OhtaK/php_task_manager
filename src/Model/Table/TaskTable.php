@@ -10,7 +10,6 @@ use Cake\Validation\Validator;
  * Task Model
  *
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\PrioritiesTable|\Cake\ORM\Association\BelongsTo $Priorities
  *
  * @method \App\Model\Entity\Task get($primaryKey, $options = [])
  * @method \App\Model\Entity\Task newEntity($data = null, array $options = [])
@@ -40,9 +39,6 @@ class TaskTable extends Table
 
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id'
-        ]);
-        $this->belongsTo('Priorities', [
-            'foreignKey' => 'priority_id'
         ]);
     }
 
@@ -80,7 +76,7 @@ class TaskTable extends Table
 
         $validator
             ->dateTime('create_date')
-            ->requirePresence('create_date', 'create')
+            ->requirePresence('create_date', false)
             ->notEmpty('create_date');
 
         return $validator;
@@ -96,8 +92,6 @@ class TaskTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['priority_id'], 'Priorities'));
-
         return $rules;
     }
 }

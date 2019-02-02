@@ -6,7 +6,7 @@ use Cake\ORM\Entity;
 /**
  * User Entity
  *
- * @property int|null $id
+ * @property int $id
  * @property string|null $name
  * @property \Cake\I18n\FrozenTime $create_date
  *
@@ -25,7 +25,6 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'id' => true,
         'name' => true,
         'create_date' => true,
         'task' => true

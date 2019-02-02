@@ -50,10 +50,17 @@ class TaskController extends AppController
         $task = $this->Task->newEntity();
         if ($this->request->is('post')) {
             $task = $this->Task->patchEntity($task, $this->request->getData());
+            //echo $this->log(pr($task), LOG_DEBUG);
+            //$task->id = 1;
             if ($this->Task->save($task)) {
                 $this->Flash->success(__('The task has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
+            }
+            else{
+                //エラーをdebug.logに表示
+                echo $this->log(print_r($task->errors(),true),LOG_DEBUG);
+                $this->Flash->error(__('失敗！ The task could not be saved. Please, try again.'));
             }
             $this->Flash->error(__('The task could not be saved. Please, try again.'));
         }
