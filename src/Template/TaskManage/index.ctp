@@ -16,6 +16,9 @@
     <h1>This is Task Manager</h1>
     <div class="task-panel">
         <p class="panel-title">TODO</p>
+        <?php foreach ($taskList as $task): ?>
+            <?php echo $task['name']; ?>
+	    <?php endforeach; ?>
     </div>
     
     <div class="task-panel">
