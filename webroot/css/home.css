@@ -120,9 +120,17 @@ h3, h4 {
     color: #404041;
 }
 
-.panel-title{
+.task-panel .panel-title{
     text-align: center;
     font-size: 30px;
+}
+
+.task-panel .card{
+    position: relative;
+    border: solid 1px;
+    width: 359px;
+    margin: 10px 0px;
+    padding: 20px;
 }
 
 .alert p {

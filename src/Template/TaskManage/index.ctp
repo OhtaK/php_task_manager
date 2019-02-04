@@ -16,8 +16,14 @@
     <h1>This is Task Manager</h1>
     <div class="task-panel">
         <p class="panel-title">TODO</p>
+        
         <?php foreach ($taskList as $task): ?>
-            <?php echo $task['name']; ?>
+        <div class="card">
+            タスク名：<?php echo $task['name']; ?></br>
+            担当者ID：<?php echo $task['user_id']; ?></br>
+            期日：<?php echo $task['limit_date']; ?></br>
+            備考：<?php echo $task['description']; ?></br>
+        </div>
 	    <?php endforeach; ?>
     </div>
     
