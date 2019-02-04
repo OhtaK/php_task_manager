@@ -1,3 +1,10 @@
+<head>
+    <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('home.css') ?>
+</head>
+
 <div style="padding: 20px;">
 
 <h1>タスク登録</h1>
@@ -94,4 +101,12 @@
         echo $this->Form->submit("登録");
         echo $this -> Form -> end ();
     ?>
+
+<?php echo $this->Html->link(
+					'一覧に戻る',
+					"/taskManage",
+					array(
+						'class'    => 'btn',
+					)
+				); ?>
 </div>

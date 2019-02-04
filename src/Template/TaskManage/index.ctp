@@ -14,6 +14,7 @@
 
 <body class="home">
     <h1>This is Task Manager</h1>
+    <div style="width: 100%;">
     <div class="task-panel">
         <p class="panel-title">TODO</p>
         
@@ -34,5 +35,14 @@
     <div class="task-panel">
         <p class="panel-title">DONE</p>
     </div>
+    </div>
+
+    <?php echo $this->Html->link(
+					'タスク追加',
+					"/task",
+					array(
+						'class'    => 'btn',
+					)
+				); ?>
 </body>
 </html>
