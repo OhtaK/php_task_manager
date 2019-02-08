@@ -109,7 +109,7 @@
 
         //submitボタン作成。引数を入れるとその文言をボタンに出してくれる
         echo $this->Form->submit("登録");
-        echo $this -> Form -> end ();
+        echo $this->Form->end ();
     ?>
     
     <?php echo $this->Html->link(
@@ -119,7 +119,5 @@
             'class'    => 'btn',
         ));
     ?>
-
-期日：<?php echo h($task); ?>
 </div>
 </html>

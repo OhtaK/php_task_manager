@@ -19,18 +19,22 @@ class TaskController extends AppController
      */
     public function index($id = null)
     {
-        //$task = $this->paginate($this->Task);
         $task = $this->Task->newEntity();
         if(isset($id)){
             //idで検索
             $task = $this->Task->get($id);
         }
-
-        //debug($this->Task->get($id));
-        debug("hit数：" . count($task));
+        else{
+            //id指定じゃなかったら初期値をセット
+            $task->name = "";
+            $task->user_id = 1;
+            $task->status = 1;
+            $task->priority_id = 1;
+            $task->limit_date = date("Y-m-d");
+            $task->description = "";
+        }
 
         $this->set(compact('task'));
-        
     }
 
     /**
