@@ -1,8 +1,15 @@
+<!DOCTYPE html>
+<html>
 <head>
+    <?= $this->Html->charset() ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task</title>
+ 
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 </head>
 
 <div style="padding: 20px;">
@@ -21,6 +28,7 @@
             'div' => false,
             'label' => 'タスク名',
             "size" => 5,
+            "default" => $task->name,
         ));
         
         echo $this->Form->input( "user_id",array(
@@ -28,13 +36,13 @@
             "type" => "select",
             "options" => [ 
                 [ "value" => "1",
-                "text" => "ユーザー１" ,
-                "selected" => true ],
+                "text" => "ユーザー１"],
                 [ "value" => "2",
                 "text" => "ユーザー2"], 
                 [ "value" => "3",
                 "text" => "ユーザー3" ]
             ], 
+            'default' => $task->user_id,
             "empty" => "--")
         );
         
@@ -43,13 +51,13 @@
             "type" => "select",
             "options" => [ 
                 [ "value" => "1",
-                "text" => "TODO" ,
-                "selected" => true ],
+                "text" => "TODO" ],
                 [ "value" => "2",
                 "text" => "DOING"], 
                 [ "value" => "3",
                 "text" => "DONE" ]
             ], 
+            'default' => $task->status,
             "empty" => "--")
         );
 
@@ -58,17 +66,17 @@
             "type" => "select",
             "options" => [ 
                 [ "value" => "1",
-                "text" => "緊急" ,
-                "selected" => true ],
+                "text" => "緊急"],
                 [ "value" => "2",
                 "text" => "ASAP"], 
                 [ "value" => "3",
                 "text" => "いつでも" ]
             ], 
+            'default' => $task->priority_id,
             "empty" => "--")
         );
 
-        echo $this -> Form -> input ("limit_date", array(
+        echo $this->Form->input ("limit_date", array(
             "label" => "期日",
             "type" => "datetime",
             "dateformat" => "YMD",
@@ -79,7 +87,7 @@
             ],
             "minYear" => date ( "Y" ) - 70,
             "maxYear" => date ( "Y" ) - 18,
-            "default" => date ( "Y-m-d" ),
+            "default" => $task->limit_date,
             "interval" => 5,
             "empty" => [
                 "year" => "年",
@@ -94,19 +102,24 @@
             "type" => "textarea",
             "label" => "備考",
             "cols" => 10,
-            "rows" => 2)
+            "rows" => 2,
+            "default" => $task->description,
+            )
         );
 
         //submitボタン作成。引数を入れるとその文言をボタンに出してくれる
         echo $this->Form->submit("登録");
         echo $this -> Form -> end ();
     ?>
+    
+    <?php echo $this->Html->link(
+        '一覧に戻る',
+        "/taskManage",
+        array(
+            'class'    => 'btn',
+        ));
+    ?>
 
-<?php echo $this->Html->link(
-					'一覧に戻る',
-					"/taskManage",
-					array(
-						'class'    => 'btn',
-					)
-				); ?>
+期日：<?php echo h($task); ?>
 </div>
+</html>

@@ -17,11 +17,20 @@ class TaskController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($id = null)
     {
-        $task = $this->paginate($this->Task);
+        //$task = $this->paginate($this->Task);
+        $task = $this->Task->newEntity();
+        if(isset($id)){
+            //idで検索
+            $task = $this->Task->get($id);
+        }
+
+        //debug($this->Task->get($id));
+        debug("hit数：" . count($task));
 
         $this->set(compact('task'));
+        
     }
 
     /**
@@ -50,19 +59,15 @@ class TaskController extends AppController
         $task = $this->Task->newEntity();
         if ($this->request->is('post')) {
             $task = $this->Task->patchEntity($task, $this->request->getData());
-            //echo $this->log(pr($task), LOG_DEBUG);
-            //$task->id = 1;
             if ($this->Task->save($task)) {
                 $this->Flash->success(__('The task has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             }
             else{
                 //エラーをdebug.logに表示
                 echo $this->log(print_r($task->errors(),true),LOG_DEBUG);
-                $this->Flash->error(__('失敗！ The task could not be saved. Please, try again.'));
+                $this->Flash->error(__('The task could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The task could not be saved. Please, try again.'));
         }
         $this->set(compact('task'));
         $this->render('/Task/index');

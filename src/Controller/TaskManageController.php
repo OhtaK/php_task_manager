@@ -17,7 +17,6 @@ class TaskManageController extends AppController
 
     public function index()
     {
-        //$result = $this->User->find('all');
         $taskList = $this->Task->find('all');
         $this->set('taskList', $taskList);
     }
