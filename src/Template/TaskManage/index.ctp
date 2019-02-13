@@ -18,7 +18,7 @@
     <div class="task-panel">
         <p class="panel-title">TODO</p>
         
-        <?php foreach ($taskList as $task): ?>
+        <?php foreach ($todoTaskList as $task): ?>
         <div class="card">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
@@ -30,10 +30,28 @@
     
     <div class="task-panel">
         <p class="panel-title">DOING</p>
+
+        <?php foreach ($doingTaskList as $task): ?>
+        <div class="card">
+            タスク名：<?php echo $task['name']; ?></br>
+            担当者ID：<?php echo $task['user_id']; ?></br>
+            期日：<?php echo $task['limit_date']; ?></br>
+            備考：<?php echo $task['description']; ?></br>
+        </div>
+	    <?php endforeach; ?>
     </div>
 
     <div class="task-panel">
         <p class="panel-title">DONE</p>
+
+        <?php foreach ($doneTaskList as $task): ?>
+        <div class="card">
+            タスク名：<?php echo $task['name']; ?></br>
+            担当者ID：<?php echo $task['user_id']; ?></br>
+            期日：<?php echo $task['limit_date']; ?></br>
+            備考：<?php echo $task['description']; ?></br>
+        </div>
+	    <?php endforeach; ?>
     </div>
     </div>
 
