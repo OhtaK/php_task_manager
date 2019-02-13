@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
  
 class TaskManageController extends AppController
 {
@@ -24,9 +25,9 @@ class TaskManageController extends AppController
 		];
 
         //タスクのstatusIDごとに取得
-        $todoTaskList = $this->Task->find()->where(['Task.status' => 1])->order($order);
-        $doingTaskList = $this->Task->find()->where(['Task.status' => 2])->order($order);
-        $doneTaskList = $this->Task->find()->where(['Task.status' => 3])->order($order);
+        $todoTaskList = $this->Task->find()->where(['Task.status' => Configure::read('TODO_ID')])->order($order);
+        $doingTaskList = $this->Task->find()->where(['Task.status' => Configure::read('DOING_ID')])->order($order);
+        $doneTaskList = $this->Task->find()->where(['Task.status' => Configure::read('DONE_ID')])->order($order);
 
         $this->set(compact('todoTaskList', 'doingTaskList', 'doneTaskList'));
         //$this->set('taskList', $taskList);

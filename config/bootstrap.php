@@ -201,3 +201,8 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
+//以下コードで使う変数
+Configure::write('TODO_ID', 1);
+Configure::write('DOING_ID', 2);
+Configure::write('DONE_ID', 3);
