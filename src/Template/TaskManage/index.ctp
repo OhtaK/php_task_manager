@@ -28,7 +28,7 @@
 	    <?php endforeach; ?>
     </div>
     
-    <div class="task-panel">
+    <div class="task-panel" style="left: 500px;">
         <p class="panel-title">DOING</p>
 
         <?php foreach ($doingTaskList as $task): ?>
@@ -41,7 +41,7 @@
 	    <?php endforeach; ?>
     </div>
 
-    <div class="task-panel">
+    <div class="task-panel" style="left: 1000px;">
         <p class="panel-title">DONE</p>
 
         <?php foreach ($doneTaskList as $task): ?>

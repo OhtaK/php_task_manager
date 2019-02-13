@@ -120,6 +120,16 @@ h3, h4 {
     color: #404041;
 }
 
+.task-panel{
+    display: inline-block;
+    position: absolute;
+    width: 400px;
+    border: solid 0.5px;
+    margin: 20px;
+    padding: 10px 20px 20px 20px;
+    border-radius: 20px;
+}
+
 .task-panel .panel-title{
     text-align: center;
     font-size: 30px;
@@ -273,16 +283,6 @@ hr {
 }
 .icon.training {
     font-size: 39px;
-}
-
-.task-panel{
-    display: inline-block;
-    position: relative;
-    width: 400px;
-    border: solid 0.5px;
-    margin: 20px;
-    padding: 10px 20px 20px 20px;
-    border-radius: 20px;
 }
 
 @media (min-width: 768px) {
