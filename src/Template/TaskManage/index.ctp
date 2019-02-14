@@ -3,7 +3,7 @@
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo</title>
+    <title>Top</title>
  
     <?= $this->Html->meta('icon') ?>
     <?= $this->Html->css('base.css') ?>
@@ -19,7 +19,7 @@
         <p class="panel-title">TODO</p>
         
         <?php foreach ($todoTaskList as $task): ?>
-        <div class="card">
+        <div class="card" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
             期日：<?php echo $task['limit_date']; ?></br>
@@ -32,7 +32,7 @@
         <p class="panel-title">DOING</p>
 
         <?php foreach ($doingTaskList as $task): ?>
-        <div class="card">
+        <div class="card" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
             期日：<?php echo $task['limit_date']; ?></br>
@@ -45,22 +45,25 @@
         <p class="panel-title">DONE</p>
 
         <?php foreach ($doneTaskList as $task): ?>
-        <div class="card">
+        <a href='task/index/{$task->id}'>
+        <div class="card" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
             期日：<?php echo $task['limit_date']; ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
+        </a>
 	    <?php endforeach; ?>
     </div>
     </div>
 
-    <?php echo $this->Html->link(
-					'タスク追加',
-					"/task",
-					array(
-						'class'    => 'btn',
-					)
-				); ?>
+    <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
 </body>
+
+<script type="text/javascript">
+function clickTask(id){
+    location.href = "http://localhost:8765/task/index/" + id;
+}
+</script>
+
 </html>
