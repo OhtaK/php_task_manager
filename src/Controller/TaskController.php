@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Task Controller
@@ -11,6 +12,12 @@ use App\Controller\AppController;
  */
 class TaskController extends AppController
 {
+
+    public function initialize() {
+		parent::initialize();
+
+		$this->Users = TableRegistry::getTableLocator()->get('Users');
+	}
 
     /**
      * Index method
@@ -34,7 +41,17 @@ class TaskController extends AppController
             $task->description = "";
         }
 
-        $this->set(compact('task'));
+        //DBに登録してあるユーザーデータからユーザー選択ボックス用のオプション配列生成
+        $users = $this->Users->find()->all()->toArray();
+        $userSelectBoxOptionList = array();
+        foreach ($users as $user) {
+            $userSelectBoxOption["value"] = $user->id;
+            $userSelectBoxOption["text"] = $user->name;
+
+            $userSelectBoxOptionList[] = $userSelectBoxOption;
+        }
+
+        $this->set(compact('task', 'userSelectBoxOptionList'));
     }
 
     /**

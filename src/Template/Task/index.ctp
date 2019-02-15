@@ -35,12 +35,7 @@
             'label' => '担当者',
             "type" => "select",
             "options" => [ 
-                [ "value" => "1",
-                "text" => "ユーザー１"],
-                [ "value" => "2",
-                "text" => "ユーザー2"], 
-                [ "value" => "3",
-                "text" => "ユーザー3" ]
+                $userSelectBoxOptionList
             ], 
             'default' => $task->user_id,
             "empty" => "--")
