@@ -63,7 +63,6 @@
         <p class="panel-title">DONE</p>
 
         <?php foreach ($doneTaskList as $task): ?>
-        <a href='task/index/{$task->id}'>
         <div class="card" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
@@ -79,7 +78,6 @@
                 'confirm'  => "{$task->name}のタスクを削除しますか？"
             ]); 
         ?>
-        </a>
 	    <?php endforeach; ?>
     </div>
     </div>

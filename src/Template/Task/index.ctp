@@ -20,7 +20,7 @@
         //createでフォームを宣言
         echo $this->Form->create('Task',array(
             'type' => 'post', //type属性を指定
-            'url' => 'task/add' //POST先のURL
+            'url' => "task/add/{$task->id}" //POST先のURL
         ));
 
         //下記パラメータの数だけ列挙

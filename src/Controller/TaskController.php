@@ -83,18 +83,22 @@ class TaskController extends AppController
             if(isset($id)){
                 $task->id = $id;
             }
+
             if ($this->Task->save($task)) {
                 $this->Flash->success(__('The task has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                $this->redirect(['controller' => 'TaskManage', 'action' => 'index']);
             }
             else{
                 //エラーをdebug.logに表示
                 echo $this->log(print_r($task->errors(),true),LOG_DEBUG);
                 $this->Flash->error(__('The task could not be saved. Please, try again.'));
+                $this->redirect(['controller' => 'Task', 'action' => 'index']);
             }
         }
-        $this->set(compact('task'));
-        $this->render('/Task/index');
+        else{
+            $this->Flash->error(__('URL直打ちはダメです'));
+            $this->redirect(['controller' => 'Task', 'action' => 'index']);
+        }
     }
 
     /**
