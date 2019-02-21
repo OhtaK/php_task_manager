@@ -25,6 +25,16 @@
             期日：<?php echo $task['limit_date']; ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
+
+        <?= $this->Form->postLink(
+            '削除',
+            "/task/delete/{$task->id}",
+            [
+                'class'    => 'btn',
+                'confirm'  => "{$task->name}のタスクを削除しますか？"
+            ]); 
+        ?>
+
 	    <?php endforeach; ?>
     </div>
     
@@ -38,6 +48,14 @@
             期日：<?php echo $task['limit_date']; ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
+        <?= $this->Form->postLink(
+            '削除',
+            "/task/delete/{$task->id}",
+            [
+                'class'    => 'btn',
+                'confirm'  => "{$task->name}のタスクを削除しますか？"
+            ]); 
+        ?>
 	    <?php endforeach; ?>
     </div>
 
@@ -52,6 +70,15 @@
             期日：<?php echo $task['limit_date']; ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
+
+        <?= $this->Form->postLink(
+            '削除',
+            "/task/delete/{$task->id}",
+            [
+                'class'    => 'btn',
+                'confirm'  => "{$task->name}のタスクを削除しますか？"
+            ]); 
+        ?>
         </a>
 	    <?php endforeach; ?>
     </div>

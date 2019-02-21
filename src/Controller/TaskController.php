@@ -75,11 +75,14 @@ class TaskController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id=null)
     {
         $task = $this->Task->newEntity();
         if ($this->request->is('post')) {
             $task = $this->Task->patchEntity($task, $this->request->getData());
+            if(isset($id)){
+                $task->id = $id;
+            }
             if ($this->Task->save($task)) {
                 $this->Flash->success(__('The task has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -135,6 +138,6 @@ class TaskController extends AppController
             $this->Flash->error(__('The task could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        $this->redirect(['controller' => 'TaskManage', 'action' => 'index']);
     }
 }
