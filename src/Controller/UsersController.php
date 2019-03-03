@@ -2,11 +2,13 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Error\Debugger;
+use Cake\I18n\Time;
 
 /**
- * Users Controller
+ * User Controller
  *
- * @property \App\Model\Table\UsersTable $Users
+ * @property \App\Model\Table\UserTable $User
  *
  * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
@@ -20,9 +22,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
+        $this->set('user', $this->Users->find('all'));
     }
 
     /**
@@ -34,7 +34,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id, [
+        $user = $this->User->get($id, [
             'contain' => ['Task']
         ]);
 
@@ -48,17 +48,21 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEntity();
+        $user = $this->User->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+            $user = $this->User->patchEntity($user, $this->request->getData());
 
+            if ($this->User->save($user)) {
+                $this->Flash->success(__('The user has been added.'));
                 return $this->redirect(['action' => 'index']);
+            }
+            else{
+                //エラーログをmy_app_name/logs/debug.logに出力
+                echo $this->log(print_r($user->errors(),true),LOG_DEBUG);
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->set(compact('user'));
+        $this->redirect('/user');
     }
 
     /**
@@ -70,12 +74,12 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
+        $user = $this->User->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+            $user = $this->User->patchEntity($user, $this->request->getData());
+            if ($this->User->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -95,8 +99,11 @@ class UsersController extends AppController
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
+
+        $id = $this->request->getData("id");
+        $user = $this->User->get($id);
+        
+        if ($this->User->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
@@ -104,4 +111,6 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    
 }

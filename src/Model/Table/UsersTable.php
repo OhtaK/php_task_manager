@@ -57,7 +57,14 @@ class UsersTable extends Table
         $validator
             ->scalar('name')
             ->maxLength('name', 128)
-            ->allowEmpty('name');
+            ->requirePresence('name', 'create')
+            ->notEmpty('name');
+
+        $validator
+            ->scalar('password')
+            ->maxLength('password', 128)
+            ->requirePresence('password', 'create')
+            ->notEmpty('password');
 
         $validator
             ->dateTime('create_date')

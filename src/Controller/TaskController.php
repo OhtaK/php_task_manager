@@ -42,14 +42,19 @@ class TaskController extends AppController
         }
 
         //DBに登録してあるユーザーデータからユーザー選択ボックス用のオプション配列生成
-        $users = $this->Users->find()->all()->toArray();
+        $users = $this->Users->find()->all();
         $userSelectBoxOptionList = array();
         foreach ($users as $user) {
+            //$userSelectBoxOption = array('name' => $user->name, 'value' => $user->id);
             $userSelectBoxOption["value"] = $user->id;
             $userSelectBoxOption["text"] = $user->name;
 
             $userSelectBoxOptionList[] = $userSelectBoxOption;
         }
+
+        //userSelectBoxOptionListをlist型にしてキーを排除する必要がある
+
+        debug($userSelectBoxOptionList);
 
         $this->set(compact('task', 'userSelectBoxOptionList'));
     }

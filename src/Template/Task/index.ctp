@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,7 +35,7 @@
         echo $this->Form->input( "user_id",array(
             'label' => '担当者',
             "type" => "select",
-            "options" => [ 
+            "options" => [
                 $userSelectBoxOptionList
             ], 
             'default' => $task->user_id,
@@ -115,4 +116,14 @@
         ));
     ?>
 </div>
+
+
+<script>
+// $(document).ready(function(){
+//     for(var userInfo of ){
+//         $('#area').append('<option value="2" selected="selected">user2</option>');
+//     }
+// });
+</script>
+
 </html>

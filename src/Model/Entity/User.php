@@ -7,7 +7,8 @@ use Cake\ORM\Entity;
  * User Entity
  *
  * @property int $id
- * @property string|null $name
+ * @property string $name
+ * @property string $password
  * @property \Cake\I18n\FrozenTime $create_date
  *
  * @property \App\Model\Entity\Task[] $task
@@ -26,7 +27,17 @@ class User extends Entity
      */
     protected $_accessible = [
         'name' => true,
+        'password' => true,
         'create_date' => true,
         'task' => true
+    ];
+
+    /**
+     * Fields that are excluded from JSON versions of the entity.
+     *
+     * @var array
+     */
+    protected $_hidden = [
+        'password'
     ];
 }
