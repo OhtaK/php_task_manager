@@ -34,7 +34,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
-        $user = $this->User->get($id, [
+        $user = $this->Users->get($id, [
             'contain' => ['Task']
         ]);
 
@@ -48,11 +48,11 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->User->newEntity();
+        $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->User->patchEntity($user, $this->request->getData());
+            $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            if ($this->User->save($user)) {
+            if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been added.'));
                 return $this->redirect(['action' => 'index']);
             }
@@ -62,7 +62,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $this->redirect('/user');
+        $this->redirect('/users');
     }
 
     /**
@@ -74,12 +74,12 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->User->get($id, [
+        $user = $this->Users->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->User->patchEntity($user, $this->request->getData());
-            if ($this->User->save($user)) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -103,7 +103,7 @@ class UsersController extends AppController
         $id = $this->request->getData("id");
         $user = $this->User->get($id);
         
-        if ($this->User->delete($user)) {
+        if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));

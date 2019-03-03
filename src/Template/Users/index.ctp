@@ -17,18 +17,18 @@
         //createでフォームを宣言
         echo $this->Form->create('User',array(
             'type' => 'post', //type属性を指定
-            'url' => 'user/add' //POST先のURL
+            'url' => 'users/add' //POST先のURL
         ));
 
         //下記パラメータの数だけ列挙
-        echo $this->Form->input('id',array(
-            'div' => false,
-            'label' => 'ユーザーID'
-        ));
-
         echo $this->Form->input('name',array(
             'div' => false,
             'label' => 'ユーザー名'
+        ));
+
+        echo $this->Form->input('password',array(
+            'div' => false,
+            'label' => 'パスワード'
         ));
 
         //submitボタン作成。引数を入れるとその文言をボタンに出してくれる
@@ -41,7 +41,7 @@
         //createでフォームを宣言
         echo $this->Form->create('deleteUser',array(
             'type' => 'post', //type属性を指定
-            'url' => 'user/delete' //POST先のURL
+            'url' => 'users/delete' //POST先のURL
         ));
 
         //下記パラメータの数だけ列挙
