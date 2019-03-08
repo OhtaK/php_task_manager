@@ -8,7 +8,7 @@ use Cake\Core\Configure;
  
 class LoginController extends AppController
 {
-    public $uses = array('User');
+    public $uses = array('Users');
 
     public function initialize() {
 		parent::initialize();
@@ -18,18 +18,31 @@ class LoginController extends AppController
 
     public function index()
     {
-        // $taskList = $this->Task->find('all');
-
-		// $order = [
-		// 	'Task.limit_date' => 'desc'
-		// ];
-
-        // //タスクのstatusIDごとに取得
-        // $todoTaskList = $this->Task->find()->where(['Task.status' => Configure::read('TODO_ID')])->order($order);
-        // $doingTaskList = $this->Task->find()->where(['Task.status' => Configure::read('DOING_ID')])->order($order);
-        // $doneTaskList = $this->Task->find()->where(['Task.status' => Configure::read('DONE_ID')])->order($order);
-
-        // $this->set(compact('todoTaskList', 'doingTaskList', 'doneTaskList'));
-        // //$this->set('taskList', $taskList);
     }
+
+    /**
+	 * ログイン
+	 */
+	public function login() {
+		// if (!$this->request->is('post'))
+		// 	return;
+
+		$this->Users = TableRegistry::getTableLocator()->get('Users');
+		$user = $this->Auth->identify();
+		if ($user) {
+			$this->Auth->setUser($user);
+			return $this->redirect($this->Auth->redirectUrl());
+		}
+
+		$this->Flash->error('ユーザ名またはパスワードを確認してください。');
+		$this->render('/login/index');
+	}
+
+	/**
+	 * ログアウト
+	 */
+	public function logout() {
+		$this->Flash->success('ログアウトしました。');
+		return $this->redirect($this->Auth->logout());
+	}
 }

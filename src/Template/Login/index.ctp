@@ -21,11 +21,11 @@
         //createでフォームを宣言
         echo $this->Form->create('Task',array(
             'type' => 'post', //type属性を指定
-            'url' => "task/index" //POST先のURL
+            'url' => "login/login" //POST先のURL
         ));
 
         //下記パラメータの数だけ列挙
-        echo $this->Form->input('user_name',array(
+        echo $this->Form->input('name',array(
             'div' => false,
             'label' => 'ユーザー名',
             "size" => 5,

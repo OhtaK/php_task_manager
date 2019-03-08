@@ -83,6 +83,7 @@
     </div>
 
     <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
+    <?php echo $this->Html->link('ログアウト', "/login/logout", array('class' => 'btn')); ?>
 </body>
 
 <script type="text/javascript">
