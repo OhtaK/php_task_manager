@@ -25,24 +25,22 @@
         ));
 
         //下記パラメータの数だけ列挙
-        echo $this->Form->input('name',array(
+        echo $this->Form->control('name',array(
             'div' => false,
             'label' => 'タスク名',
             "size" => 5,
             "default" => $task->name,
         ));
         
-        echo $this->Form->input( "user_id",array(
+        echo $this->Form->control( "user_id",array(
             'label' => '担当者',
             "type" => "select",
-            "options" => [
-                $userSelectBoxOptionList
-            ], 
+            "options" => $userSelectBoxOptionList, 
             'default' => $task->user_id,
             "empty" => "--")
         );
         
-        echo $this->Form->input( "status",array(
+        echo $this->Form->control( "status",array(
             'label' => 'ステータス',
             "type" => "select",
             "options" => [ 
@@ -57,7 +55,7 @@
             "empty" => "--")
         );
 
-        echo $this->Form->input( "priority_id",array(
+        echo $this->Form->control( "priority_id",array(
             'label' => '優先度',
             "type" => "select",
             "options" => [ 
@@ -72,7 +70,7 @@
             "empty" => "--")
         );
 
-        echo $this->Form->input ("limit_date", array(
+        echo $this->Form->control("limit_date", array(
             "label" => "期日",
             "type" => "datetime",
             "dateformat" => "YMD",
@@ -94,7 +92,7 @@
             ] ) 
         );
 
-        echo $this->Form->input ("description",array(
+        echo $this->Form->control("description",array(
             "type" => "textarea",
             "label" => "備考",
             "cols" => 10,

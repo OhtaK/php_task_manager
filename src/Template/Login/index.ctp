@@ -25,13 +25,13 @@
         ));
 
         //下記パラメータの数だけ列挙
-        echo $this->Form->input('name',array(
+        echo $this->Form->control('name',array(
             'div' => false,
             'label' => 'ユーザー名',
             "size" => 5,
         ));
 
-        echo $this->Form->input('password',array(
+        echo $this->Form->control('password',array(
             'div' => false,
             'label' => 'パスワード',
             "size" => 10,

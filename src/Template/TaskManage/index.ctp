@@ -10,10 +10,43 @@
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+
+    <style>
+#conmenu{
+  width:130px;
+  background-color:#f0f0f0;
+  border:1px solid #999999;
+  display:none;
+  position:fixed;
+}
+ 
+#conmenu.on{
+  display:block;
+}
+ 
+#conmenu ul{
+  list-style:none;
+  margin:0px;
+  padding:5px;
+}
+#area{
+  width:400px;
+  height:200px;
+  background-color:#ddddff;
+}
+</style>
 </head>
 
 <body class="home">
     <h1>This is Task Manager</h1>
+    <div id="conmenu">
+    <ul>
+    <li><a href="https://www.google.co.jp" target="_blank">Google</a></li>
+    <li><a href="https://www.yahoo.co.jp/" target="_blank">Yahoo</a></li>
+    <li><a href="https://www.goo.ne.jp/" target="_blank">goo</a></li>
+  </ul>
+</div>
+<div id="area">このエリア上で右クリックしてください。</div>
     <div style="width: 100%;">
     <div class="task-panel">
         <p class="panel-title">TODO</p>
@@ -89,6 +122,26 @@
 <script type="text/javascript">
 function clickTask(id){
     location.href = "http://localhost:8765/task/index/" + id;
+}
+
+window.onload = function(){
+  var menu = document.getElementById('conmenu');  //独自コンテキストメニュー
+  var area = document.getElementById('area');     //対象エリア
+  var body = document.body;                       //bodyエリア
+ 
+  //右クリック時に独自コンテキストメニューを表示する
+  area.addEventListener('contextmenu',function(e){
+    menu.style.left = e.pageX + 'px';
+    menu.style.top = e.pageY + 'px';
+    menu.classList.add('on');
+  });
+ 
+  //左クリック時に独自コンテキストメニューを非表示にする
+  body.addEventListener('click',function(){
+    if(menu.classList.contains('on')){
+      menu.classList.remove('on');
+    }
+  });
 }
 </script>
 
