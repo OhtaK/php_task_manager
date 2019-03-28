@@ -119,10 +119,25 @@
     <?php echo $this->Html->link('ログアウト', "/login/logout", array('class' => 'btn')); ?>
 </body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="text/javascript">
 function clickTask(id){
     location.href = "/task/index/" + id;
 }
+
+var menu = document.getElementById('conmenu');  //独自コンテキストメニュー
+$('#area').hover( () => {
+  // 　　menu.style.left = e.pageX + 'px';
+  //   menu.style.top = e.pageY + 'px';
+    menu.classList.add('on');
+  
+  }, function() {
+  
+    　　if(menu.classList.contains('on')){
+      menu.classList.remove('on');
+    }
+  
+   });
 
 window.onload = function(){
   var menu = document.getElementById('conmenu');  //独自コンテキストメニュー
