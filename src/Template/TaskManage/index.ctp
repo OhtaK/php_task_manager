@@ -121,7 +121,7 @@
 
 <script type="text/javascript">
 function clickTask(id){
-    location.href = "http://localhost:8765/task/index/" + id;
+    location.href = "/task/index/" + id;
 }
 
 window.onload = function(){
