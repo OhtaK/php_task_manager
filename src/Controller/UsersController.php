@@ -22,7 +22,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->set('user', $this->Users->find('all'));
+        $this->set('users', $this->Users->find('all'));
     }
 
     /**
@@ -98,10 +98,9 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
+        debug($id);
         $this->request->allowMethod(['post', 'delete']);
-
-        $id = $this->request->getData("id");
-        $user = $this->User->get($id);
+        $user = $this->Users->findById($id)->first();
         
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('The user has been deleted.'));

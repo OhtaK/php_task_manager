@@ -39,34 +39,27 @@
         echo $this -> Form -> end ();
     ?>
     
-    <?php
-        //削除フォーム
-        //createでフォームを宣言
-        echo $this->Form->create('deleteUser',array(
-            'type' => 'post', //type属性を指定
-            'url' => 'users/delete' //POST先のURL
-        ));
-
-        //下記パラメータの数だけ列挙
-        echo $this->Form->control('id',array(
-            'label' => '削除したいユーザーID'
-        ));
-
-        //submitボタン作成。引数を入れるとその文言をボタンに出してくれる
-        echo $this->Form->submit("削除");
-        echo $this -> Form -> end ();
-    ?>
-    
     <table>
         <tr>
-            <th>Id</th>
-            <th>name</th>
+            <th>ID</th>
+            <th>ユーザー名</th>
+            <th>操作</th>
         </tr>
  
-        <?php foreach ($user as $item): ?>
+        <?php foreach ($users as $item): ?>
         <tr>
             <td><?= $item->id ?></td>
             <td><?= $item->name ?></td>
+            <td>
+                <?= $this->Form->postLink(
+					'削除',
+					"/users/delete/{$item->id}",
+					[
+						'class'    => 'btn',
+						'confirm'  => "ユーザーを削除しますか？ (id={$item->id})"
+					]
+                ); ?>
+            </td>
         </tr>
         <?php endforeach; ?>
     </table>
