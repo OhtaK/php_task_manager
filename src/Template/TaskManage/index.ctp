@@ -52,7 +52,7 @@
         <p class="panel-title">TODO</p>
         
         <?php foreach ($todoTaskList as $task): ?>
-        <div class="card" onClick = "clickTask(<?php echo $task['id']; ?>)">
+        <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
             期日：<?php echo $task['limit_date']; ?></br>
@@ -75,7 +75,7 @@
         <p class="panel-title">DOING</p>
 
         <?php foreach ($doingTaskList as $task): ?>
-        <div class="card" onClick = "clickTask(<?php echo $task['id']; ?>)">
+        <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
             期日：<?php echo $task['limit_date']; ?></br>
@@ -96,7 +96,7 @@
         <p class="panel-title">DONE</p>
 
         <?php foreach ($doneTaskList as $task): ?>
-        <div class="card" onClick = "clickTask(<?php echo $task['id']; ?>)">
+        <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
             期日：<?php echo $task['limit_date']; ?></br>

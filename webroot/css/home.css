@@ -144,6 +144,18 @@ h3, h4 {
     padding: 20px;
 }
 
+.task-panel .card.priority_1{
+    border-left: solid 10px red;
+}
+
+.task-panel .card.priority_2{
+    border-left: solid 10px yellow;
+}
+
+.task-panel .card.priority_3{
+    border-left: solid 10px blue;
+}
+
 .btn{
     margin: 2px 4px;
     display: inline-block;
