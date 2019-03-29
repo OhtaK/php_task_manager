@@ -115,6 +115,7 @@
     </div>
     </div>
 
+    <?php echo $this->Html->link('ユーザー', "/users", array('class' => 'btn')); ?>
     <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
     <?php echo $this->Html->link('ログアウト', "/login/logout", array('class' => 'btn')); ?>
 </body>
