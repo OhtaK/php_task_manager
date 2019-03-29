@@ -1,17 +1,20 @@
-<h1>User</h1>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>name</th>
-    </tr>
+<!DOCTYPE html>
+<html>
+<head>
+    <?= $this->Html->charset() ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top</title>
  
-    <?php foreach ($user as $item): ?>
-    <tr>
-        <td><?= $item->id ?></td>
-        <td><?= $item->name ?></td>
-        </td>
-    </tr>
-    <?php endforeach; ?>
+    <?= $this->Html->meta('icon') ?>
+    <?= $this->Html->css('base.css') ?>
+    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('home.css') ?>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+</head>
+
+<body class="home">
+    <div style="padding: 40px;">
+    <h1>User</h1>
 
     <?php
         //createでフォームを宣言
@@ -21,12 +24,12 @@
         ));
 
         //下記パラメータの数だけ列挙
-        echo $this->Form->input('name',array(
+        echo $this->Form->control('name',array(
             'div' => false,
             'label' => 'ユーザー名'
         ));
 
-        echo $this->Form->input('password',array(
+        echo $this->Form->control('password',array(
             'div' => false,
             'label' => 'パスワード'
         ));
@@ -45,7 +48,7 @@
         ));
 
         //下記パラメータの数だけ列挙
-        echo $this->Form->input('id',array(
+        echo $this->Form->control('id',array(
             'label' => '削除したいユーザーID'
         ));
 
@@ -53,4 +56,19 @@
         echo $this->Form->submit("削除");
         echo $this -> Form -> end ();
     ?>
-</table>
+    
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>name</th>
+        </tr>
+ 
+        <?php foreach ($user as $item): ?>
+        <tr>
+            <td><?= $item->id ?></td>
+            <td><?= $item->name ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    </div>
+</body>
