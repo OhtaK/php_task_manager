@@ -20,9 +20,19 @@ class TaskManageController extends AppController
     {
         $taskList = $this->Task->find('all');
 
-		$order = [
-			'Task.limit_date' => 'desc'
-		];
+        //POSTで飛んできてたらリクエストに応じてconditionを設定
+        if ($this->request->is('post')) {
+            debug($this->request->getData());
+            $request_data = $this->request->getData();
+            $order = [
+                'Task.'.$request_data['sort'] => $request_data['order']
+            ];
+        }
+        else{
+            $order = [
+                'Task.limit_date' => 'desc'
+            ];
+        }
 
         //タスクのstatusIDごとに取得
         $todoTaskList = $this->Task->find()->where(['Task.status' => Configure::read('TODO_ID')])->order($order);

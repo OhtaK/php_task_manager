@@ -69,9 +69,9 @@
                 'label' => '',
                 "type" => "select",
                 "options" => [ 
-                  [ "value" => "1",
+                  [ "value" => "priority_id",
                   "text" => "優先度でソート" ],
-                  [ "value" => "2",
+                  [ "value" => "limit_date",
                   "text" => "期日でソート"], 
                 ], 
                 'default' => 1,)
@@ -81,9 +81,9 @@
                 'label' => '',
                 "type" => "select",
                 "options" => [ 
-                  [ "value" => "1",
+                  [ "value" => "asc",
                   "text" => "昇順" ],
-                  [ "value" => "2",
+                  [ "value" => "desc",
                   "text" => "降順"], 
                 ], 
                 'default' => 1)
@@ -92,7 +92,7 @@
             </td>
             <td>
               <?php 
-              echo $this->Form->control('user',array(
+              echo $this->Form->control('user_id',array(
                 'div' => false,
                 'label' => 'ユーザー名',
                 "size" => 5,
@@ -148,7 +148,7 @@
             <td>
             <?php 
               echo $this->Form->submit("適用");
-              echo $this -> Form -> end ();
+              echo $this->Form->end();
             ?>
             </td>
         </tr>
