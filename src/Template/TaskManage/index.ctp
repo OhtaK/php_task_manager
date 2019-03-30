@@ -38,15 +38,121 @@
 </head>
 
 <body class="home">
+<div style="padding: 40px;">
     <h1>This is Task Manager</h1>
     <div id="conmenu">
-    <ul>
-    <li><a href="https://www.google.co.jp" target="_blank">Google</a></li>
-    <li><a href="https://www.yahoo.co.jp/" target="_blank">Yahoo</a></li>
-    <li><a href="https://www.goo.ne.jp/" target="_blank">goo</a></li>
-  </ul>
-</div>
-<div id="area">このエリア上で右クリックしてください。</div>
+      <ul>
+        <li><a href="https://www.google.co.jp" target="_blank">Google</a></li>
+        <li><a href="https://www.yahoo.co.jp/" target="_blank">Yahoo</a></li>
+        <li><a href="https://www.goo.ne.jp/" target="_blank">goo</a></li>
+      </ul>
+    </div>
+    <?php echo $this->Html->link('ユーザー', "/users", array('class' => 'btn')); ?>
+    <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
+    <?php echo $this->Html->link('ログアウト', "/login/logout", array('class' => 'btn')); ?>
+    <table>
+        <?php
+        echo $this->Form->create('Condition',array(
+            'type' => 'post', //type属性を指定
+            'url' => "taskManage/index/" //POST先のURL
+        ));
+        ?>
+        <tr>
+            <th>ソート条件</th>
+            <th>検索条件</th>
+        </tr>
+ 
+        <tr>
+            <td>
+              <?php 
+              echo $this->Form->control( "sort",array(
+                'label' => '',
+                "type" => "select",
+                "options" => [ 
+                  [ "value" => "1",
+                  "text" => "優先度でソート" ],
+                  [ "value" => "2",
+                  "text" => "期日でソート"], 
+                ], 
+                'default' => 1,)
+              );
+
+              echo $this->Form->control( "order",array(
+                'label' => '',
+                "type" => "select",
+                "options" => [ 
+                  [ "value" => "1",
+                  "text" => "昇順" ],
+                  [ "value" => "2",
+                  "text" => "降順"], 
+                ], 
+                'default' => 1)
+              );
+              ?>
+            </td>
+            <td>
+              <?php 
+              echo $this->Form->control('user',array(
+                'div' => false,
+                'label' => 'ユーザー名',
+                "size" => 5,
+                "default" => '',
+              ));
+        
+              echo $this->Form->control("limit_start_date", array(
+                "label" => "期日開始",
+                "type" => "datetime",
+                "dateformat" => "YMD",
+                "monthNames" => false,
+                "separator" => "/",
+                "templates" => [ 
+                  "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' 
+                ],
+                "minYear" => date ( "Y" ) - 70,
+                "maxYear" => date ( "Y" ) - 18,
+                "default" => '',
+                "interval" => 5,
+                "empty" => [
+                  "year" => "年",
+                  "month" => "月",
+                  "day" => "日",
+                  "hour" => "時",
+                  "minute" => "分"
+                ]) 
+              );
+      
+              echo $this->Form->control("limit_end_date", array(
+                "label" => "期日終了",
+                "type" => "datetime",
+                "dateformat" => "YMD",
+                "monthNames" => false,
+                "separator" => "/",
+                "templates" => [ 
+                  "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' 
+                ],
+                "minYear" => date ( "Y" ) - 70,
+                "maxYear" => date ( "Y" ) - 18,
+                "default" => '',
+                "interval" => 5,
+                "empty" => [
+                  "year" => "年",
+                  "month" => "月",
+                  "day" => "日",
+                  "hour" => "時",
+                  "minute" => "分"
+                ] ) 
+              );
+              ?>
+            </td>
+
+            <td>
+            <?php 
+              echo $this->Form->submit("適用");
+              echo $this -> Form -> end ();
+            ?>
+            </td>
+        </tr>
+    </table>
     <div style="width: 100%;">
     <div class="task-panel">
         <p class="panel-title">TODO</p>
@@ -71,7 +177,7 @@
 	    <?php endforeach; ?>
     </div>
     
-    <div class="task-panel" style="left: 500px;">
+    <div class="task-panel">
         <p class="panel-title">DOING</p>
 
         <?php foreach ($doingTaskList as $task): ?>
@@ -92,7 +198,7 @@
 	    <?php endforeach; ?>
     </div>
 
-    <div class="task-panel" style="left: 1000px;">
+    <div class="task-panel">
         <p class="panel-title">DONE</p>
 
         <?php foreach ($doneTaskList as $task): ?>
@@ -114,10 +220,8 @@
 	    <?php endforeach; ?>
     </div>
     </div>
-
-    <?php echo $this->Html->link('ユーザー', "/users", array('class' => 'btn')); ?>
-    <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
-    <?php echo $this->Html->link('ログアウト', "/login/logout", array('class' => 'btn')); ?>
+</div>
+</div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

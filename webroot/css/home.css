@@ -122,13 +122,14 @@ h3, h4 {
 
 .task-panel{
     display: inline-block;
-    position: absolute;
+    position: relative;
     width: 400px;
     border: solid 0.5px;
     margin: 20px;
     margin-top: 60px;
     padding: 10px 20px 20px 20px;
     border-radius: 20px;
+    vertical-align: top;
 }
 
 .task-panel .panel-title{
