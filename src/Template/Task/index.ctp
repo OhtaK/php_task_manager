@@ -32,7 +32,7 @@
             "default" => $task->name,
         ));
         
-        echo $this->Form->control( "user_id",array(
+        echo $this->Form->control("user_id",array(
             'label' => '担当者',
             "type" => "select",
             "options" => $userSelectBoxOptionList, 

@@ -52,10 +52,6 @@ class TaskController extends AppController
             $userSelectBoxOptionList[] = $userSelectBoxOption;
         }
 
-        //userSelectBoxOptionListをlist型にしてキーを排除する必要がある
-
-        debug($userSelectBoxOptionList);
-
         $this->set(compact('task', 'userSelectBoxOptionList'));
     }
 

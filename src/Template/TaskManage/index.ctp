@@ -47,9 +47,10 @@
         <li><a href="https://www.goo.ne.jp/" target="_blank">goo</a></li>
       </ul>
     </div>
-    <?php echo $this->Html->link('ユーザー', "/users", array('class' => 'btn')); ?>
-    <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
+
+    <?php echo $this->Html->link('ユーザー管理', "/users", array('class' => 'btn')); ?>
     <?php echo $this->Html->link('ログアウト', "/login/logout", array('class' => 'btn')); ?>
+    
     <table>
         <?php
         echo $this->Form->create('Condition',array(
@@ -65,7 +66,7 @@
         <tr>
             <td>
               <?php 
-              echo $this->Form->control( "sort",array(
+              echo $this->Form->control("sort",array(
                 'label' => '',
                 "type" => "select",
                 "options" => [ 
@@ -77,7 +78,7 @@
                 'default' => 1,)
               );
 
-              echo $this->Form->control( "order",array(
+              echo $this->Form->control("order",array(
                 'label' => '',
                 "type" => "select",
                 "options" => [ 
@@ -92,12 +93,11 @@
             </td>
             <td>
               <?php 
-              echo $this->Form->control('user_id',array(
-                'div' => false,
+              echo $this->Form->control("user_id",array(
                 'label' => 'ユーザー名',
-                "size" => 5,
-                "default" => '',
-              ));
+                "type" => "select",
+                "options" => $user_select_box_option_list, )
+              );
         
               echo $this->Form->control("limit_start_date", array(
                 "label" => "期日開始",
@@ -153,11 +153,13 @@
             </td>
         </tr>
     </table>
+
+    <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
     <div style="width: 100%;">
     <div class="task-panel">
         <p class="panel-title">TODO</p>
         
-        <?php foreach ($todoTaskList as $task): ?>
+        <?php foreach ($todo_task_list as $task): ?>
         <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
@@ -180,7 +182,7 @@
     <div class="task-panel">
         <p class="panel-title">DOING</p>
 
-        <?php foreach ($doingTaskList as $task): ?>
+        <?php foreach ($doing_task_list as $task): ?>
         <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
@@ -201,7 +203,7 @@
     <div class="task-panel">
         <p class="panel-title">DONE</p>
 
-        <?php foreach ($doneTaskList as $task): ?>
+        <?php foreach ($done_task_list as $task): ?>
         <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者ID：<?php echo $task['user_id']; ?></br>
