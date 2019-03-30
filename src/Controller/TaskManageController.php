@@ -29,7 +29,7 @@ class TaskManageController extends AppController
             $user_select_box_option["value"] = $user->id;
             $user_select_box_option["text"] = $user->name;
 
-            $user_select_box_option_list[] = $user_select_box_option;
+            $user_select_box_option_list[$user->id] = $user_select_box_option;
         }
         debug($user_select_box_option_list);
 

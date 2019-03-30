@@ -162,7 +162,13 @@
         <?php foreach ($todo_task_list as $task): ?>
         <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
-            担当者ID：<?php echo $task['user_id']; ?></br>
+            担当者名：
+            <?php if(isset($user_select_box_option_list[$task['user_id']]['text'])): ?>
+              <?php echo $user_select_box_option_list[$task['user_id']]['text']; ?>
+            <?php else: ?>
+              設定されていないか、削除されています
+            <?php endif; ?>
+            </br>
             期日：<?php echo $task['limit_date']; ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
@@ -185,7 +191,13 @@
         <?php foreach ($doing_task_list as $task): ?>
         <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
-            担当者ID：<?php echo $task['user_id']; ?></br>
+            担当者名：
+            <?php if(isset($user_select_box_option_list[$task['user_id']]['text'])): ?>
+              <?php echo $user_select_box_option_list[$task['user_id']]['text']; ?>
+            <?php else: ?>
+              設定されていないか、削除されています
+            <?php endif; ?>
+            </br>
             期日：<?php echo $task['limit_date']; ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
@@ -206,7 +218,13 @@
         <?php foreach ($done_task_list as $task): ?>
         <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
-            担当者ID：<?php echo $task['user_id']; ?></br>
+            担当者名：
+            <?php if(isset($user_select_box_option_list[$task['user_id']]['text'])): ?>
+              <?php echo $user_select_box_option_list[$task['user_id']]['text']; ?>
+            <?php else: ?>
+              設定されていないか、削除されています
+            <?php endif; ?>
+            </br>
             期日：<?php echo $task['limit_date']; ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
