@@ -203,6 +203,4 @@ Type::build('timestamp')
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 
 //以下コードで使う変数
-Configure::write('TODO_ID', 1);
-Configure::write('DOING_ID', 2);
-Configure::write('DONE_ID', 3);
+Configure::write('STATUS_NAME', ['1' => 'TODO','2' => 'DOING','3' => 'DONE']);
