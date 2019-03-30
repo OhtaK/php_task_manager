@@ -96,7 +96,8 @@
               echo $this->Form->control("user_id",array(
                 'label' => 'ユーザー名',
                 "type" => "select",
-                "options" => $user_select_box_option_list, )
+                "options" => $user_select_box_option_list, 
+                "empty" => "指定なし", )
               );
         
               echo $this->Form->control("limit_start_date", array(
@@ -156,39 +157,12 @@
 
     <?php echo $this->Html->link('タスク追加', "/task", array('class' => 'btn')); ?>
     <div style="width: 100%;">
+
+    <?php for ($i = 1; $i < 4; $i++): ?>
     <div class="task-panel">
-        <p class="panel-title">TODO</p>
-        
-        <?php foreach ($todo_task_list as $task): ?>
-        <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
-            タスク名：<?php echo $task['name']; ?></br>
-            担当者名：
-            <?php if(isset($user_select_box_option_list[$task['user_id']]['text'])): ?>
-              <?php echo $user_select_box_option_list[$task['user_id']]['text']; ?>
-            <?php else: ?>
-              設定されていないか、削除されています
-            <?php endif; ?>
-            </br>
-            期日：<?php echo $task['limit_date']; ?></br>
-            備考：<?php echo $task['description']; ?></br>
-        </div>
+        <p class="panel-title"><?php echo $status_name[$i]; ?></p>
 
-        <?= $this->Form->postLink(
-            '削除',
-            "/task/delete/{$task->id}",
-            [
-                'class'    => 'btn',
-                'confirm'  => "{$task->name}のタスクを削除しますか？"
-            ]); 
-        ?>
-
-	    <?php endforeach; ?>
-    </div>
-    
-    <div class="task-panel">
-        <p class="panel-title">DOING</p>
-
-        <?php foreach ($doing_task_list as $task): ?>
+        <?php foreach ($task_list[$i] as $task): ?>
         <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
             タスク名：<?php echo $task['name']; ?></br>
             担当者名：
@@ -211,34 +185,7 @@
         ?>
 	    <?php endforeach; ?>
     </div>
-
-    <div class="task-panel">
-        <p class="panel-title">DONE</p>
-
-        <?php foreach ($done_task_list as $task): ?>
-        <div class="card priority_<?php echo $task['priority_id']; ?>" onClick = "clickTask(<?php echo $task['id']; ?>)">
-            タスク名：<?php echo $task['name']; ?></br>
-            担当者名：
-            <?php if(isset($user_select_box_option_list[$task['user_id']]['text'])): ?>
-              <?php echo $user_select_box_option_list[$task['user_id']]['text']; ?>
-            <?php else: ?>
-              設定されていないか、削除されています
-            <?php endif; ?>
-            </br>
-            期日：<?php echo $task['limit_date']; ?></br>
-            備考：<?php echo $task['description']; ?></br>
-        </div>
-
-        <?= $this->Form->postLink(
-            '削除',
-            "/task/delete/{$task->id}",
-            [
-                'class'    => 'btn',
-                'confirm'  => "{$task->name}のタスクを削除しますか？"
-            ]); 
-        ?>
-	    <?php endforeach; ?>
-    </div>
+    <?php endfor; ?>
     </div>
 </div>
 </div>

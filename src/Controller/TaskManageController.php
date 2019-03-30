@@ -31,15 +31,20 @@ class TaskManageController extends AppController
 
             $user_select_box_option_list[$user->id] = $user_select_box_option;
         }
-        debug($user_select_box_option_list);
 
         //POSTで飛んできてたらリクエストに応じてconditionとorderを設定
+        $condition = [];
         if ($this->request->is('post')) {
             debug($this->request->getData());
+            
             $request_data = $this->request->getData();
             $order = [
                 'Task.'.$request_data['sort'] => $request_data['order']
             ];
+
+            if($request_data['user_id'] != ''){
+                $condition['Task.user_id'] = $request_data['user_id'];
+            }
         }
         else{
             $order = [
@@ -48,10 +53,13 @@ class TaskManageController extends AppController
         }
 
         //タスクのstatusIDごとに取得
-        $todo_task_list  = $this->Task->find()->where(['Task.status' => Configure::read('TODO_ID')])->order($order);
-        $doing_task_list = $this->Task->find()->where(['Task.status' => Configure::read('DOING_ID')])->order($order);
-        $done_task_list  = $this->Task->find()->where(['Task.status' => Configure::read('DONE_ID')])->order($order);
+        for ($i = 1; $i < 4; $i++){
+            $condition['Task.status'] = $i;
+            debug($condition);
+            $task_list[$i] = $this->Task->find()->where($condition)->order($order)->all();
+        }
+        $status_name = Configure::read('STATUS_NAME');
 
-        $this->set(compact('todo_task_list', 'doing_task_list', 'done_task_list', 'user_select_box_option_list'));
+        $this->set(compact('task_list', 'status_name', 'user_select_box_option_list'));
     }
 }
