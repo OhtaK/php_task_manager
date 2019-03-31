@@ -18,10 +18,17 @@
 
     <?php
         //createでフォームを宣言
+        if(isset($search_user['id'])):
         echo $this->Form->create('User',array(
             'type' => 'post', //type属性を指定
-            'url' => 'users/add' //POST先のURL
+            'url' => "users/add/{$search_user->id}" //POST先のURL
         ));
+        else:
+        echo $this->Form->create('User',array(
+            'type' => 'post', //type属性を指定
+            'url' => "users/add" //POST先のURL
+        ));
+        endif;
 
         //下記パラメータの数だけ列挙
         echo $this->Form->control('name',array(
@@ -58,6 +65,13 @@
             <td><?= $item->id ?></td>
             <td><?= $item->name ?></td>
             <td>
+                <?= $this->Form->postLink(
+					'編集',
+					"/users/index/{$item->id}",
+					[
+						'class'    => 'btn',
+					]
+                ); ?>
                 <?= $this->Form->postLink(
 					'削除',
 					"/users/delete/{$item->id}",

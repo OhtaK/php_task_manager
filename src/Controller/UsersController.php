@@ -60,14 +60,24 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($id = null)
     {
         $user = $this->Users->newEntity();
+        
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+            if(isset($id)){
+                $user['id'] = $id;
+            }
+            debug($user);
 
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been added.'));
+                if(isset($id)){
+                    $this->Flash->success(__('The user has been saved.'));
+                }
+                else{
+                    $this->Flash->success(__('The user has been added.'));
+                }
                 return $this->redirect(['action' => 'index']);
             }
             else{
