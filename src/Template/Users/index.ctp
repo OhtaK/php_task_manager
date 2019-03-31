@@ -66,13 +66,6 @@
             <td><?= $item->name ?></td>
             <td>
                 <?= $this->Form->postLink(
-					'編集',
-					"/users/index/{$item->id}",
-					[
-						'class'    => 'btn',
-					]
-                ); ?>
-                <?= $this->Form->postLink(
 					'削除',
 					"/users/delete/{$item->id}",
 					[
@@ -80,6 +73,16 @@
 						'confirm'  => "ユーザーを削除しますか？ (id={$item->id})"
 					]
                 ); ?>
+
+                <?php if($admin_data['id'] == $item['id']): ?>
+                <?= $this->Form->postLink(
+					'編集',
+					"/users/index/{$item->id}",
+					[
+						'class'    => 'btn',
+					]
+                ); ?>
+                <?php endif; ?>
             </td>
         </tr>
         <?php endforeach; ?>
