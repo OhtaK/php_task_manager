@@ -36,14 +36,24 @@ class TaskManageController extends AppController
         $condition = [];
         if ($this->request->is('post')) {
             debug($this->request->getData());
-            
             $request_data = $this->request->getData();
+
+            $created = date('Y-m-d H:i:s', strtotime($request_data['limit_start_date']));
+            debug($created);
             $order = [
                 'Task.'.$request_data['sort'] => $request_data['order']
             ];
 
             if($request_data['user_id'] != ''){
                 $condition['Task.user_id'] = $request_data['user_id'];
+            }
+
+            if($request_data['limit_start_date'] != ''){
+                $condition['Task.limit_date >= '] = date('Y-m-d H:i:s', strtotime($request_data['limit_start_date']));
+            }
+
+            if($request_data['limit_end_date'] != ''){
+                $condition['Task.limit_date <= '] = date('Y-m-d H:i:s', strtotime($request_data['limit_end_date']));
             }
         }
         else{
