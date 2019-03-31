@@ -11,6 +11,14 @@
     <?= $this->Html->css('home.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 
+    <!-- <link rel="stylesheet" href="../../../bootstrap-4.3.1-dist/css/bootstrap.min.css"> -->
+    <!-- bootstrap -->
+    <!-- <script src="../../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script> -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" >
+
     <style>
 #conmenu{
   width:130px;
@@ -102,46 +110,14 @@
         
               echo $this->Form->control("limit_start_date", array(
                 "label" => "期日開始",
-                "type" => "datetime",
-                "dateformat" => "YMD",
-                "monthNames" => false,
-                "separator" => "/",
-                "templates" => [ 
-                  "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' 
-                ],
-                "minYear" => date ( "Y" ) - 70,
-                "maxYear" => date ( "Y" ) - 18,
-                "default" => '',
-                "interval" => 5,
-                "empty" => [
-                  "year" => "年",
-                  "month" => "月",
-                  "day" => "日",
-                  "hour" => "時",
-                  "minute" => "分"
-                ]) 
+                "type" => "text",
+                "id"=>"datepicker_limit_start")
               );
       
               echo $this->Form->control("limit_end_date", array(
                 "label" => "期日終了",
-                "type" => "datetime",
-                "dateformat" => "YMD",
-                "monthNames" => false,
-                "separator" => "/",
-                "templates" => [ 
-                  "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' 
-                ],
-                "minYear" => date ( "Y" ) - 70,
-                "maxYear" => date ( "Y" ) - 18,
-                "default" => '',
-                "interval" => 5,
-                "empty" => [
-                  "year" => "年",
-                  "month" => "月",
-                  "day" => "日",
-                  "hour" => "時",
-                  "minute" => "分"
-                ] ) 
+                "type" => "text",
+                "id"=>"datepicker_limit_end")
               );
               ?>
             </td>
@@ -191,7 +167,13 @@
 </div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  $(function() {
+    $("#datepicker_limit_start").datepicker();
+    $("#datepicker_limit_end").datepicker();
+  });
+</script>
+
 <script type="text/javascript">
 function clickTask(id){
     location.href = "/task/index/" + id;
@@ -212,23 +194,23 @@ $('#area').hover( () => {
    });
 
 window.onload = function(){
-  var menu = document.getElementById('conmenu');  //独自コンテキストメニュー
-  var area = document.getElementById('area');     //対象エリア
-  var body = document.body;                       //bodyエリア
+  // var menu = document.getElementById('conmenu');  //独自コンテキストメニュー
+  // var area = document.getElementById('area');     //対象エリア
+  // var body = document.body;                       //bodyエリア
  
-  //右クリック時に独自コンテキストメニューを表示する
-  area.addEventListener('contextmenu',function(e){
-    menu.style.left = e.pageX + 'px';
-    menu.style.top = e.pageY + 'px';
-    menu.classList.add('on');
-  });
+  // //右クリック時に独自コンテキストメニューを表示する
+  // area.addEventListener('contextmenu',function(e){
+  //   menu.style.left = e.pageX + 'px';
+  //   menu.style.top = e.pageY + 'px';
+  //   menu.classList.add('on');
+  // });
  
-  //左クリック時に独自コンテキストメニューを非表示にする
-  body.addEventListener('click',function(){
-    if(menu.classList.contains('on')){
-      menu.classList.remove('on');
-    }
-  });
+  // //左クリック時に独自コンテキストメニューを非表示にする
+  // body.addEventListener('click',function(){
+  //   if(menu.classList.contains('on')){
+  //     menu.classList.remove('on');
+  //   }
+  // });
 }
 </script>
 
