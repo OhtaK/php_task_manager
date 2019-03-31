@@ -145,7 +145,7 @@
               設定されていないか、削除されています
             <?php endif; ?>
             </br>
-            期日：<?php echo $task['limit_date']; ?></br>
+            期日：<?php echo date('Y-m-d H:i:s', strtotime($task['limit_date'])); ?></br>
             備考：<?php echo $task['description']; ?></br>
         </div>
         <?= $this->Form->postLink(

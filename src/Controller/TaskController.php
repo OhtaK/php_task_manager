@@ -30,6 +30,8 @@ class TaskController extends AppController
         if(isset($id)){
             //idで検索
             $task = $this->Task->get($id);
+            // $task['limit_date'] = null;
+            // debug($task['limit_date']);
         }
         else{
             //id指定じゃなかったら初期値をセット
@@ -81,9 +83,15 @@ class TaskController extends AppController
         $task = $this->Task->newEntity();
         if ($this->request->is('post')) {
             $task = $this->Task->patchEntity($task, $this->request->getData());
-            debug($task['limit_date']);
-            $task['limit_date'] = date('Y-m-d H:i:s', strtotime($task['limit_date']));
-            debug($task['limit_date']);
+            
+            if(isset($task['limit_date']) && $task['limit_date'] !== '1970-01-01 00:00:00'){
+                debug($task['limit_date']);
+                $task['limit_date'] = date('Y-m-d H:i:s', strtotime($task['limit_date']));
+            }
+            else{
+                $task['limit_date'] = null;
+            }
+
             if(isset($id)){
                 $task->id = $id;
             }

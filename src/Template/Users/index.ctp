@@ -26,19 +26,26 @@
         //下記パラメータの数だけ列挙
         echo $this->Form->control('name',array(
             'div' => false,
-            'label' => 'ユーザー名'
+            'label' => 'ユーザー名',
+            "default" => $search_user['name'],
         ));
 
         echo $this->Form->control('password',array(
             'div' => false,
-            'label' => 'パスワード'
+            'label' => 'パスワード',
+            "default" => $search_user['password'],
         ));
 
         //submitボタン作成。引数を入れるとその文言をボタンに出してくれる
-        echo $this->Form->submit("登録");
-        echo $this -> Form -> end ();
+        if(isset($users)):
+            echo $this->Form->submit("新規登録");
+        else:
+            echo $this->Form->submit("変更を保存");
+        endif;
+        echo $this->Form->end();
     ?>
     
+    <?php if(isset($users)): ?>
     <table>
         <tr>
             <th>ID</th>
@@ -63,6 +70,7 @@
         </tr>
         <?php endforeach; ?>
     </table>
+    <?php endif; ?>
 
     <?php echo $this->Html->link(
         'タスク一覧に戻る',

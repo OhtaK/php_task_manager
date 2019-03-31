@@ -65,7 +65,6 @@ class TaskManageController extends AppController
             $task_list[$i] = $this->Task->find()->where($condition)->order($order)->all();
         }
         $status_name = Configure::read('STATUS_NAME');
-
         $this->set(compact('task_list', 'status_name', 'user_select_box_option_list'));
     }
 }

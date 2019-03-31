@@ -13,9 +13,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-<link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css">
-<script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+    <link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css">
+    <script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 </head>
 
 <div style="padding: 20px;">
@@ -106,8 +105,12 @@
 
 
 <script>
-$.datetimepicker.setLocale('ja');
-$("#datepicker_limit_date").datetimepicker();
+// $(document).ready(function(){
+// $.datetimepicker.setLocale('ja');
+// $("#datepicker_limit_date").datetimepicker({
+//   format:'unixtime'
+// });
+// });
 </script>
 
 </html>

@@ -20,9 +20,23 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    public function index($id = null)
     {
-        $this->set('users', $this->Users->find('all'));
+        if(isset($id)){
+            //idで検索
+            $search_user = $this->Users->findById($id)->first();
+            if(!isset($search_user)){
+                $this->Flash->error(__('データが見つかりませんでした。'));
+                $search_user['name'] = '';
+                $search_user['password'] = '';
+            }
+        }
+        else{
+            $users = $this->Users->find('all');
+            $search_user['name'] = '';
+            $search_user['password'] = '';
+        }
+        $this->set(compact('users', 'search_user'));
     }
 
     /**
