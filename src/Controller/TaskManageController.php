@@ -35,11 +35,8 @@ class TaskManageController extends AppController
         //POSTで飛んできてたらリクエストに応じてconditionとorderを設定
         $condition = [];
         if ($this->request->is('post')) {
-            debug($this->request->getData());
             $request_data = $this->request->getData();
 
-            $created = date('Y-m-d H:i:s', strtotime($request_data['limit_start_date']));
-            debug($created);
             $order = [
                 'Task.'.$request_data['sort'] => $request_data['order']
             ];
@@ -65,7 +62,6 @@ class TaskManageController extends AppController
         //タスクのstatusIDごとに取得
         for ($i = 1; $i < 4; $i++){
             $condition['Task.status'] = $i;
-            debug($condition);
             $task_list[$i] = $this->Task->find()->where($condition)->order($order)->all();
         }
         $status_name = Configure::read('STATUS_NAME');

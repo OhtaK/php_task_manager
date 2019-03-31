@@ -63,5 +63,13 @@
         </tr>
         <?php endforeach; ?>
     </table>
+
+    <?php echo $this->Html->link(
+        'タスク一覧に戻る',
+        "/taskManage",
+        array(
+            'class'    => 'btn',
+        ));
+    ?>
     </div>
 </body>

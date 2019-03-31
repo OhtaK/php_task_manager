@@ -81,6 +81,9 @@ class TaskController extends AppController
         $task = $this->Task->newEntity();
         if ($this->request->is('post')) {
             $task = $this->Task->patchEntity($task, $this->request->getData());
+            debug($task['limit_date']);
+            $task['limit_date'] = date('Y-m-d H:i:s', strtotime($task['limit_date']));
+            debug($task['limit_date']);
             if(isset($id)){
                 $task->id = $id;
             }

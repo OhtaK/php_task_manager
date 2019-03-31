@@ -11,6 +11,11 @@
     <?= $this->Html->css('style.css') ?>
     <?= $this->Html->css('home.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css">
+<script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 </head>
 
 <div style="padding: 20px;">
@@ -40,7 +45,7 @@
             "empty" => "--")
         );
         
-        echo $this->Form->control( "status",array(
+        echo $this->Form->control("status",array(
             'label' => 'ステータス',
             "type" => "select",
             "options" => [ 
@@ -55,7 +60,7 @@
             "empty" => "--")
         );
 
-        echo $this->Form->control( "priority_id",array(
+        echo $this->Form->control("priority_id",array(
             'label' => '優先度',
             "type" => "select",
             "options" => [ 
@@ -71,26 +76,10 @@
         );
 
         echo $this->Form->control("limit_date", array(
-            "label" => "期日",
-            "type" => "datetime",
-            "dateformat" => "YMD",
-            "monthNames" => false,
-            "separator" => "/",
-            "templates" => [ 
-                "dateWidget" => '{{year}} 年 {{month}} 月 {{day}} 日 {{hour}} 時 {{minute}} 分' 
-            ],
-            "minYear" => date ( "Y" ) - 70,
-            "maxYear" => date ( "Y" ) - 18,
-            "default" => $task->limit_date,
-            "interval" => 5,
-            "empty" => [
-                "year" => "年",
-                "month" => "月",
-                "day" => "日",
-                "hour" => "時",
-                "minute" => "分"
-            ] ) 
-        );
+            "label" => "期日開始",
+            "type" => "text",
+            "id"=>"datepicker_limit_date")
+          );
 
         echo $this->Form->control("description",array(
             "type" => "textarea",
@@ -117,11 +106,8 @@
 
 
 <script>
-// $(document).ready(function(){
-//     for(var userInfo of ){
-//         $('#area').append('<option value="2" selected="selected">user2</option>');
-//     }
-// });
+$.datetimepicker.setLocale('ja');
+$("#datepicker_limit_date").datetimepicker();
 </script>
 
 </html>

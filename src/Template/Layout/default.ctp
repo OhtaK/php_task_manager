@@ -19,11 +19,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <html>
 <head>
 
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-
-<link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css">
-<script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
-
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>

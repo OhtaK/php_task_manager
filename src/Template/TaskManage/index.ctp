@@ -11,6 +11,11 @@
     <?= $this->Html->css('home.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+<link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css">
+<script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+
     <style>
 #conmenu{
   width:130px;
