@@ -29,9 +29,7 @@ class TaskController extends AppController
         $task = $this->Task->newEntity();
         if(isset($id)){
             //idで検索
-            $task = $this->Task->get($id);
-            // $task['limit_date'] = null;
-            // debug($task['limit_date']);
+            $task = $this->Task->findById($id)->first();
         }
         else{
             //id指定じゃなかったら初期値をセット

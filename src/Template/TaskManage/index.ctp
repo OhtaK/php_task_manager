@@ -15,43 +15,11 @@
 
 <link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css">
 <script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
-
-    <style>
-#conmenu{
-  width:130px;
-  background-color:#f0f0f0;
-  border:1px solid #999999;
-  display:none;
-  position:fixed;
-}
- 
-#conmenu.on{
-  display:block;
-}
- 
-#conmenu ul{
-  list-style:none;
-  margin:0px;
-  padding:5px;
-}
-#area{
-  width:400px;
-  height:200px;
-  background-color:#ddddff;
-}
-</style>
 </head>
 
 <body class="home">
 <div style="padding: 40px;">
     <h1>This is Task Manager</h1>
-    <div id="conmenu">
-      <ul>
-        <li><a href="https://www.google.co.jp" target="_blank">Google</a></li>
-        <li><a href="https://www.yahoo.co.jp/" target="_blank">Yahoo</a></li>
-        <li><a href="https://www.goo.ne.jp/" target="_blank">goo</a></li>
-      </ul>
-    </div>
 
     <?php echo $this->Html->link('ユーザー管理', "/users", array('class' => 'btn')); ?>
     <?php echo $this->Html->link('ログアウト', "/login/logout", array('class' => 'btn')); ?>
@@ -167,10 +135,6 @@
 
 <script>
   $(function() {
-    // $("#datepicker_limit_start").datepicker();
-    // $("#datepicker_limit_start").datepicker("option", "dateFormat", 'yy-mm-dd');
-    // $("#datepicker_limit_end").datepicker();
-    // $("#datepicker_limit_end").datepicker("option", "dateFormat", 'yy-mm-dd');
 
     $.datetimepicker.setLocale('ja');
     $("#datepicker_limit_start").datetimepicker();
@@ -181,40 +145,6 @@
 <script type="text/javascript">
 function clickTask(id){
     location.href = "/task/index/" + id;
-}
-
-var menu = document.getElementById('conmenu');  //独自コンテキストメニュー
-$('#area').hover( () => {
-  // 　　menu.style.left = e.pageX + 'px';
-  //   menu.style.top = e.pageY + 'px';
-    menu.classList.add('on');
-  
-  }, function() {
-  
-    　　if(menu.classList.contains('on')){
-      menu.classList.remove('on');
-    }
-  
-   });
-
-window.onload = function(){
-  // var menu = document.getElementById('conmenu');  //独自コンテキストメニュー
-  // var area = document.getElementById('area');     //対象エリア
-  // var body = document.body;                       //bodyエリア
- 
-  // //右クリック時に独自コンテキストメニューを表示する
-  // area.addEventListener('contextmenu',function(e){
-  //   menu.style.left = e.pageX + 'px';
-  //   menu.style.top = e.pageY + 'px';
-  //   menu.classList.add('on');
-  // });
- 
-  // //左クリック時に独自コンテキストメニューを非表示にする
-  // body.addEventListener('click',function(){
-  //   if(menu.classList.contains('on')){
-  //     menu.classList.remove('on');
-  //   }
-  // });
 }
 </script>
 

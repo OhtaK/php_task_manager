@@ -13,8 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css">
-    <script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+
+    <!-- <link rel="stylesheet" target="_blank" href="datetimepicker/jquery.datetimepicker.css"> -->
+<!-- <script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script> -->
 </head>
 
 <div style="padding: 20px;">
@@ -75,9 +76,10 @@
         );
 
         echo $this->Form->control("limit_date", array(
-            "label" => "期日開始",
+            "label" => "期日",
             "type" => "text",
-            "id"=>"datepicker_limit_date")
+            "id"=>"datepicker_limit_date", 
+            'default' => date('Y-m-d H:i:s', strtotime($task['limit_date'])),)
           );
 
         echo $this->Form->control("description",array(
