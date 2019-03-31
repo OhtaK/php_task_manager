@@ -11,13 +11,8 @@
     <?= $this->Html->css('home.css') ?>
     <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
 
-    <!-- <link rel="stylesheet" href="../../../bootstrap-4.3.1-dist/css/bootstrap.min.css"> -->
-    <!-- bootstrap -->
-    <!-- <script src="../../../bootstrap-4.3.1-dist/js/bootstrap.min.js"></script> -->
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/redmond/jquery-ui.css" >
+    <link rel="stylesheet" href="datetimepicker/jquery.datetimepicker.css">
+    <script src="datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
 
     <style>
 #conmenu{
@@ -169,8 +164,14 @@
 
 <script>
   $(function() {
-    $("#datepicker_limit_start").datepicker();
-    $("#datepicker_limit_end").datepicker();
+    // $("#datepicker_limit_start").datepicker();
+    // $("#datepicker_limit_start").datepicker("option", "dateFormat", 'yy-mm-dd');
+    // $("#datepicker_limit_end").datepicker();
+    // $("#datepicker_limit_end").datepicker("option", "dateFormat", 'yy-mm-dd');
+
+    $.datetimepicker.setLocale('ja');
+    $("#datepicker_limit_start").datetimepicker();
+    $("#datepicker_limit_end").datetimepicker();
   });
 </script>
 
