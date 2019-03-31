@@ -70,7 +70,7 @@
 					"/users/delete/{$item->id}",
 					[
 						'class'    => 'btn',
-						'confirm'  => "ユーザーを削除しますかaaaa？ (id={$item->id})"
+						'confirm'  => "ユーザーを削除しますか？ (id={$item->id})"
 					]
                 ); ?>
 
